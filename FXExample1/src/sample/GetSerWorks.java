@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -20,9 +21,10 @@ public class GetSerWorks {
         try {
             ObjectInputStream workStream = new ObjectInputStream(new FileInputStream("works.ser"));
             Map<String, String> mapWork = (TreeMap<String, String>)workStream.readObject();
+            workStream.close();
             for(Map.Entry<String, String> entry : mapWork.entrySet()){
                 workList.add(entry.getKey());
-                System.out.println(entry.getKey());
+               // System.out.println(entry.getKey());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,11 +36,12 @@ public class GetSerWorks {
     public String getAllInfo(String key) throws ClassNotFoundException {
         String allInfo;
         try {
+            System.out.println(key);
             ObjectInputStream workStream = new ObjectInputStream(new FileInputStream("works.ser"));
-            Map<String, String> mapWork = (Map<String, String>)workStream.readObject();
-
-                allInfo = key + " \n" + mapWork.containsValue(key);
-                System.out.println(mapWork.get(key));
+            Map<String, String> mapWork = (TreeMap<String, String>)workStream.readObject();
+         workStream.close();
+                allInfo = key + " \n" + mapWork.get(key);
+               // System.out.println(mapWork.get(key));
             return allInfo;
 
         } catch (IOException e) {

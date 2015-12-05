@@ -12,18 +12,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Button fx:id="button" layoutX="420.0" layoutY="399.0" onAction="#handleButtonAction" text="Готово!" />
-        <Label fx:id="label" layoutX="514.0" layoutY="3.0" minHeight="16.0" minWidth="69.0" prefHeight="22.0" prefWidth="268.0" text="nulll" textFill="RED">
+        <Button fx:id="button" layoutX="422.0" layoutY="394.0" onAction="#handleButtonAction" text="Готово!" />
+        <Label fx:id="label" layoutX="622.0" layoutY="22.0" minHeight="16.0" minWidth="69.0" prefHeight="22.0" prefWidth="368.0" text="Для начала работы нажмите кнопку &quot;Обновить&quot;" textFill="RED">
             <font>
                 <Font size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="client" layoutX="37.0" layoutY="79.0" prefHeight="27.0" prefWidth="334.0" />
-        <TextField fx:id="tel" layoutX="37.0" layoutY="111.0" prefHeight="27.0" prefWidth="334.0" />
-        <TextField fx:id="car" layoutX="37.0" layoutY="145.0" prefHeight="27.0" prefWidth="334.0" />
-        <TextArea fx:id="works" layoutX="37.0" layoutY="184.0" prefHeight="80.0" prefWidth="389.0" wrapText="true" />
-        <TextField fx:id="price" layoutX="36.0" layoutY="274.0" prefHeight="27.0" prefWidth="275.0" />
-        <TextArea fx:id="other" layoutX="36.0" layoutY="314.0" prefHeight="72.0" prefWidth="383.0" wrapText="true" />
+        <TextField fx:id="client" layoutX="37.0" layoutY="79.0" prefHeight="27.0" prefWidth="334.0" promptText="Фамилия Имя" />
+        <TextField fx:id="tel" layoutX="37.0" layoutY="111.0" prefHeight="27.0" prefWidth="334.0" promptText="89993332211" />
+        <TextField fx:id="car" layoutX="37.0" layoutY="145.0" prefHeight="27.0" prefWidth="334.0" promptText="Ford Focus г.н. У 111 УУ 59" />
+        <TextArea fx:id="works" layoutX="37.0" layoutY="184.0" prefHeight="80.0" prefWidth="389.0" promptText="Диагносика подвески, Сварочные работы" wrapText="true" />
+        <TextField fx:id="price" layoutX="36.0" layoutY="274.0" prefHeight="27.0" prefWidth="275.0" promptText="99999" />
+        <TextArea fx:id="other" layoutX="36.0" layoutY="314.0" prefHeight="72.0" prefWidth="383.0" promptText="Выявлена неисправность трансписсии, люфты рулевого механизма, Пониженная компрессия в 4 цилиндре. Клиент от ремонта отказался." wrapText="true" />
         <Label layoutX="434.0" layoutY="50.0" text="Мастер" />
         <Label layoutX="377.0" layoutY="81.0" text="Клиент" />
         <Label layoutX="377.0" layoutY="114.0" text="Телефон" />
@@ -40,13 +40,13 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <ListView id="list" fx:id="cashList" layoutX="23.0" layoutY="426.0" prefHeight="225.0" prefWidth="1074.0" />
-        <TextArea fx:id="printArea" layoutX="524.0" layoutY="59.0" prefHeight="307.0" prefWidth="597.0" promptText="Подробные данные" wrapText="true" />
+        <ListView id="list" fx:id="cashList" layoutX="23.0" layoutY="426.0" prefHeight="225.0" prefWidth="1112.0" />
+        <TextArea fx:id="printArea" layoutX="524.0" layoutY="59.0" prefHeight="307.0" prefWidth="612.0" promptText="Подробные данные" wrapText="true" />
         <Label layoutX="518.0" layoutY="396.0" text="Поиск" />
-        <TextField fx:id="searchField" layoutX="565.0" layoutY="393.0" prefWidth="200.0" />
+        <TextField fx:id="searchField" layoutX="565.0" layoutY="393.0" prefWidth="200.0" promptText="ФАМИЛИЯ ИМЯ" />
         <Button layoutX="775.0" layoutY="394.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
         <Separator cache="false" layoutX="512.0" layoutY="3.0" opacity="1.0" orientation="VERTICAL" prefHeight="417.0" />
-        <Button layoutX="326.0" layoutY="399.0" mnemonicParsing="false" text="Clear" />
+        <Button layoutX="23.0" layoutY="394.0" mnemonicParsing="false" onAction="#clickClearAction" text="Очистить" />
       <ComboBox fx:id="comboBox1" layoutX="36.0" layoutY="11.0" prefHeight="27.0" prefWidth="383.0" promptText="Выбери!">
          <items>
             <FXCollections fx:factory="observableArrayList">

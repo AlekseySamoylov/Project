@@ -11,36 +11,16 @@ import java.util.TreeMap;
  */
 public class OneWork{
 
-//    private String manager;
-//    private String master;
-//    private String time;
-//    private String client;
-//    private String tel;
-//    private String car;
-//    private String works;
-//    private float price;
-//    private String other;
-
     public void setAll(String manager, String master, String time, String client, String tel, String car, String works, float price, String other) throws IOException, ClassNotFoundException {
-//        this.manager = manager;
-//        this.master = master;
-//        this.time = time;
-//        this.client = client;
-//        this.tel = tel;
-//        this.car = car;
-//        this.works = works;
-//        this.price = price;
-//        this.other = other;
 
         Map<String, String> mapWorks = new TreeMap<String, String>();
 
 if(new File("works.ser").exists()) {
 
     ObjectInputStream oistream = new ObjectInputStream(new FileInputStream("works.ser"));
-    mapWorks = (Map<String, String>) oistream.readObject();
-
-    String one = time + " " + client + " " + car + " " + tel;
-    String two = manager + " " + works + " " + price + " " + other;
+    mapWorks = (Map<String, String>)oistream.readObject();
+    String one = time + " " + client + " " + " | " + car + " | " + master + " | " + manager;
+    String two = "\n\nКлиент: " + client + "\nАвтомобиль: " + car + "\nМастер: " + master + "\nМенеджер: " + manager + "\nНомер телефона: " +tel + "\nПроизведенные работы : \n" + works + "\nЦена: \n" + String.valueOf(price) + "\nЗамечания: \n " + other;
     mapWorks.put(one, two);
     System.out.println(mapWorks.containsValue(one));
     oistream.close();
@@ -49,8 +29,11 @@ if(new File("works.ser").exists()) {
     outStream.close();
 
 }else{
+    String one = time + " " + client + " " + " | " + car + " | " + master + " | " + manager;
+    String two = "\n\nКлиент: " + client + "\nАвтомобиль: " + car + "\nМастер: " + master + "\nМенеджер: " + manager + "\nНомер телефона: " +tel + "\nПроизведенные работы : \n" + works + "\nЦена: \n" + String.valueOf(price) + "\nЗамечания: \n " + other;
     ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream("works.ser"));
-    outStream.writeObject(mapWorks.put("one", "one"));
+    mapWorks.put(one, two);
+    outStream.writeObject(mapWorks);
     outStream.close();
 }
 

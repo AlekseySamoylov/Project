@@ -5,11 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -21,7 +17,7 @@ public class Controller {
     ObservableList<String> list
             = FXCollections.observableArrayList("Женя ГЛМ","Антон ГЛМ","Саня Полазна","Женя Коми","Женя Сварщик","Саня Вышка");
     ObservableList<String> listMeneger
-            = FXCollections.observableArrayList("Олег","Артур");
+            = FXCollections.observableArrayList("Олег","Артур","Заместитель");
 
     @FXML
     private Label label;
@@ -31,9 +27,6 @@ public class Controller {
 
     @FXML
     private ComboBox<String> comboBox;
-
-    @FXML
-    private TextField master;
 
     @FXML
     private TextField client;
@@ -54,18 +47,6 @@ public class Controller {
     private TextArea other;
 
     @FXML
-    private TableColumn dayT;
-
-    @FXML
-    private TableColumn masterT;
-
-    @FXML
-    private TableView<String> tableView;
-
-    @FXML
-    private TableColumn clientT;
-
-    @FXML
     private ListView cashList;
 
     @FXML
@@ -76,25 +57,30 @@ public class Controller {
 
     @FXML
     private void searchAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-    SearchAll one = new SearchAll();
+        try{
+    String key = searchField.getText();
+        SearchSinc four = new SearchSinc();
 
-        ObservableList listAll = one.getAllSearch(searchField.getText());
+        ObservableList listAll = four.searchSinc(key);
         Collections.reverse(listAll);
         cashList.setItems(listAll);
+        label.setText("ok!");
+    }catch(Exception ex){
+        System.out.println(ex);
+        label.setText("Wrong print table!");
+    }
     }
 
     @FXML
-    private void refreshData(ActionEvent event){
-        setAllEvents();
-    }
+    private void refreshData(ActionEvent event){setAllEvents();}
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException {
-
+        Date sec = new Date();
 
         SimpleDateFormat date = new SimpleDateFormat("kk:mm dd/M/yyyy");
         String ss = date.format(new Date());
-        String timeB = ss;
+        String timeB = sec.getTime() + "| "+ ss;
         String masterB = comboBox.getSelectionModel().getSelectedItem();
         String managerB = comboBox1.getSelectionModel().getSelectedItem();
         String clientB = client.getText().toUpperCase(Locale.FRENCH);
@@ -104,7 +90,7 @@ public class Controller {
         float priceB = 0;
 
         if((masterB == null || comboBox1.getSelectionModel().getSelectedItem() == null)||(masterB.equals("Выбери!"))){
-            label.setText("viberi mastera");
+            label.setText("Не выбрано поле с именем Мастера или Менеджера");
         }else{
             try{
                 priceB = Float.valueOf(price.getText().trim());
@@ -122,18 +108,8 @@ public class Controller {
                 label.setText("Wrong Serialize");
             }
 
-            try{
-                GetSerWorks two = new GetSerWorks();
-                ObservableList listAll = two.getSerWorks();
-                Collections.reverse(listAll);
-                cashList.setItems(listAll);
-                label.setText(label.getText() + " ok!");
-            }catch(Exception ex){
-                System.out.println(ex);
-                label.setText("Wrong print table!");
-            }
-            comboBox.setItems(list);
-            comboBox1.setItems(listMeneger);
+         setAllEvents();
+
 
             if (label.getText().equals("All ok!")){
                 client.setText("");
@@ -147,98 +123,47 @@ public class Controller {
             }
             comboBox.getSelectionModel().select("Выбери!");
 
-
-
-//
-//            ConnSQL asss = new ConnSQL();
-//            String asss2 = asss.connected(managerB, masterB, timeB, clientB, telB, carB, worksB, priceB, otherB);
-//
-//            label.setText(asss2);
-//
-//            if (asss2.equals("All right!")){
-//                client.setText("");
-//                tel.setText("");
-//                car.setText("");
-//                works.setText("");
-//                price.setText("");
-//                other.setText("");
-//
-//
-//            }
-//            comboBox.getSelectionModel().select("Выбери!");
-//
-//            setAllEvents();
   }
     }
     private void setAllEvents(){
         try{
-            GetAll all = new GetAll();
-            ObservableList listAll = all.getAll();
+            GetSerWorks two = new GetSerWorks();
+            ObservableList listAll = two.getSerWorks();
             Collections.reverse(listAll);
             cashList.setItems(listAll);
+            label.setText("ok!");
         }catch(Exception ex){
             System.out.println(ex);
+            label.setText("Wrong print table!");
         }
         comboBox.setItems(list);
         comboBox1.setItems(listMeneger);
-
     }
+
     @FXML
     private void clickPrint() throws ClassNotFoundException {
+
         String printText = cashList.getSelectionModel().getSelectedItems().toString();
+
+        System.out.println(printText);
+        int longStr = printText.length();
+        String keyFinal = printText.substring(1, (longStr-1));
+        System.out.println(keyFinal);
         GetSerWorks three = new GetSerWorks();
 
-        printArea.setText(three.getAllInfo(printText));
+        printArea.setText(three.getAllInfo(keyFinal));
     }
 
-//    private void serialWork() throws IOException {
-//        SimpleDateFormat date = new SimpleDateFormat("kk:mm dd/M/yyyy");
-//        String ss = date.format(new Date());
-//        String timeB = ss;
-//        String masterB = comboBox.getSelectionModel().getSelectedItem();
-//        String managerB = comboBox1.getSelectionModel().getSelectedItem();
-//        String clientB = client.getText().toUpperCase(Locale.FRENCH);
-//        String telB = tel.getText();
-//        String carB = car.getText();
-//        String worksB = works.getText();
-//        float priceB = 0;
-//
-//        if((masterB == null || comboBox1.getSelectionModel().getSelectedItem() == null)||(masterB.equals("Выбери!"))){
-//            label.setText("viberi mastera");
-//        }else{
-//            try{
-//                priceB = Float.valueOf(price.getText().trim());
-//            }catch(NumberFormatException ex){
-//                price.setText("НЕВЕРНО! Введите просто цифру!");
-//            }
-//            String otherB = other.getText();
-//
-//            OneWork asss = new OneWork();
-//            asss.setAll(managerB, masterB, timeB, clientB, telB, carB, worksB, priceB, otherB);
-//
-//            ObjectOutputStream oStream = new ObjectOutputStream(new FileOutputStream("works.ser"));
-//            oStream.writeObject(asss);
-//            oStream.close();
-//
-//
-//            label.setText("Serialize has completed");
-//
-//            if (label.getText().equals("Serialize has completed")){
-//                client.setText("");
-//                tel.setText("");
-//                car.setText("");
-//                works.setText("");
-//                price.setText("");
-//                other.setText("");
-//
-//
-//            }
-//            comboBox.getSelectionModel().select("Выбери!");
-//
-//            setAllEvents();
-//        }
-//    }
-
+    @FXML
+    private void clickClearAction(ActionEvent event){
+        client.setText("");
+                tel.setText("");
+                car.setText("");
+                works.setText("");
+                price.setText("");
+                other.setText("");
+        comboBox.getSelectionModel().select("Выбери!");
+    }
 
 
 }

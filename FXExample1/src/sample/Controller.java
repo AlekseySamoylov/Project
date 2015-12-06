@@ -15,9 +15,9 @@ import java.util.Locale;
 public class Controller {
 
     ObservableList<String> list
-            = FXCollections.observableArrayList("Женя ГЛМ","Антон ГЛМ","Саня Полазна","Женя Коми","Женя Сварщик","Саня Вышка");
+            = FXCollections.observableArrayList("Стрелков Александр","Жигулев Александр","Закоптелов Антон","Вашкарин Евгений","Осипов Евгений","Плотников Евгений", "Автослесарь", "Автослесарь с золотыми руками");
     ObservableList<String> listMeneger
-            = FXCollections.observableArrayList("Олег","Артур","Заместитель");
+            = FXCollections.observableArrayList("Новиков Олег","Мезенцев Артур","Заместитель");
 
     @FXML
     private Label label;
@@ -54,6 +54,16 @@ public class Controller {
 
     @FXML
     private TextField searchField;
+
+    @FXML
+    private void PrintCheck(ActionEvent event){
+        String checkText = printArea.getText();
+        Printer five = new Printer();
+        five.printer(checkText);
+        PrinterGo six = new PrinterGo();
+        six.printPage();
+        label.setText("Чек был отправлен на печать!");
+    }
 
     @FXML
     private void searchAction(ActionEvent event) throws SQLException, ClassNotFoundException {

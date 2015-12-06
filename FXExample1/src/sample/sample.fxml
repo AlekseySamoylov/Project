@@ -20,7 +20,7 @@
         </Label>
         <TextField fx:id="client" layoutX="37.0" layoutY="79.0" prefHeight="27.0" prefWidth="334.0" promptText="Фамилия Имя" />
         <TextField fx:id="tel" layoutX="37.0" layoutY="111.0" prefHeight="27.0" prefWidth="334.0" promptText="89993332211" />
-        <TextField fx:id="car" layoutX="37.0" layoutY="145.0" prefHeight="27.0" prefWidth="334.0" promptText="Ford Focus г.н. У 111 УУ 59" />
+        <TextField fx:id="car" layoutX="37.0" layoutY="145.0" prefHeight="27.0" prefWidth="334.0" promptText="Ford Focus У 111 УУ 59" />
         <TextArea fx:id="works" layoutX="37.0" layoutY="184.0" prefHeight="80.0" prefWidth="389.0" promptText="Диагносика подвески, Сварочные работы" wrapText="true" />
         <TextField fx:id="price" layoutX="36.0" layoutY="274.0" prefHeight="27.0" prefWidth="275.0" promptText="99999" />
         <TextArea fx:id="other" layoutX="36.0" layoutY="314.0" prefHeight="72.0" prefWidth="383.0" promptText="Выявлена неисправность трансписсии, люфты рулевого механизма, Пониженная компрессия в 4 цилиндре. Клиент от ремонта отказался." wrapText="true" />

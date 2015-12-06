@@ -14,6 +14,7 @@ import java.util.TreeMap;
  * Created by alekseysamoylov on 12/5/15.
  */
 public class SearchSinc {
+    //Поиск данных в таблице
     public ObservableList<String> searchSinc(String key) throws ClassNotFoundException {
         String allInfo;
        ObservableList<String> result = FXCollections.observableArrayList();
@@ -25,21 +26,13 @@ public class SearchSinc {
             for(Map.Entry<String, String> entry : mapWork.entrySet()){
                 if(entry.getKey().contains(key)){
                     result.add(entry.getKey());
-                    System.out.println(entry.getKey());
-
                 }
-
             }
-
 return result;
-
-        } catch (IOException e) {
+        }catch (IOException e){
             e.printStackTrace();
             result.add("Wrong!!");
             return result;
         }
-
-
     }
-
 }

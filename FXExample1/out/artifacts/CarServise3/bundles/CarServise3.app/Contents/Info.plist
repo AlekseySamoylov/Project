@@ -9,15 +9,15 @@
   <key>CFBundleAllowMixedLocalizations</key>
   <true/>
   <key>CFBundleExecutable</key>
-  <string>JavaFXApp</string>
+  <string>CarServise3</string>
   <key>CFBundleIconFile</key>
-  <string>JavaFXApp.icns</string>
+  <string>CarServise3.icns</string>
   <key>CFBundleIdentifier</key>
   <string>JavaFXApp_id</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundleName</key>
-  <string>JavaFXApp</string>
+  <string>CarServise3</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>

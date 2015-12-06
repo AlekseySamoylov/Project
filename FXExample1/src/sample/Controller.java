@@ -68,12 +68,13 @@ public class Controller {
     }catch(Exception ex){
         System.out.println(ex);
         label.setText("Wrong print table!");
-    }
+      }
     }
 
     @FXML
     private void refreshData(ActionEvent event){setAllEvents();}
 
+    //Сохранение данных о клиенте и работе
     @FXML
     private void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException {
         Date sec = new Date();
@@ -94,37 +95,41 @@ public class Controller {
         }else{
             try{
                 priceB = Float.valueOf(price.getText().trim());
+                String otherB = other.getText();
+
+                OneWork one = new OneWork();
+                try {
+                    one.setAll(managerB, masterB, timeB, clientB, telB, carB, worksB, priceB, otherB);
+                    label.setText("All");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    label.setText("Wrong Serialize");
+                }
+
+                setAllEvents();
+
+
+                if (label.getText().equals("All ok!")){
+                    client.setText("");
+                    tel.setText("");
+                    car.setText("");
+                    works.setText("");
+                    price.setText("");
+                    price.setPromptText("99999");
+                    other.setText("");
+
+
+                }
+                comboBox.getSelectionModel().select("Выбери!");
+
             }catch(NumberFormatException ex){
-                price.setText("НЕВЕРНО! Введите просто цифру!");
+                price.clear();
+                price.setPromptText("НЕВЕРНО! Введите просто цифру!");
+                label.setText("Ошибка в поле \"Цена\"");
             }
-            String otherB = other.getText();
-
-            OneWork one = new OneWork();
-            try {
-                one.setAll(managerB, masterB, timeB, clientB, telB, carB, worksB, priceB, otherB);
-                label.setText("All");
-            } catch (IOException e) {
-                e.printStackTrace();
-                label.setText("Wrong Serialize");
-            }
-
-         setAllEvents();
-
-
-            if (label.getText().equals("All ok!")){
-                client.setText("");
-                tel.setText("");
-                car.setText("");
-                works.setText("");
-                price.setText("");
-                other.setText("");
-
-
-            }
-            comboBox.getSelectionModel().select("Выбери!");
-
-  }
+        }
     }
+    //Установка всех данных в поля и таблицу
     private void setAllEvents(){
         try{
             GetSerWorks two = new GetSerWorks();
@@ -140,6 +145,7 @@ public class Controller {
         comboBox1.setItems(listMeneger);
     }
 
+    //Просмотр информации из ячейки
     @FXML
     private void clickPrint() throws ClassNotFoundException {
 
@@ -154,6 +160,7 @@ public class Controller {
         printArea.setText(three.getAllInfo(keyFinal));
     }
 
+    //Очистить поля ввода данных о клиенте
     @FXML
     private void clickClearAction(ActionEvent event){
         client.setText("");

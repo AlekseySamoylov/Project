@@ -15,8 +15,9 @@ import java.util.TreeMap;
  * Created by AlekseiSamoilov on 05.12.15.
  */
 public class GetSerWorks {
-    public ObservableList<String> getSerWorks() throws ClassNotFoundException {
 
+    //Подготовка данных(ключей) для отправки в таблицу
+    public ObservableList<String> getSerWorks() throws ClassNotFoundException {
         ObservableList<String> workList = FXCollections.observableArrayList();
         try {
             ObjectInputStream workStream = new ObjectInputStream(new FileInputStream("works.ser"));
@@ -24,15 +25,14 @@ public class GetSerWorks {
             workStream.close();
             for(Map.Entry<String, String> entry : mapWork.entrySet()){
                 workList.add(entry.getKey());
-               // System.out.println(entry.getKey());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return workList;
-
     }
+    //
     public String getAllInfo(String key) throws ClassNotFoundException {
         String allInfo;
         try {
@@ -41,7 +41,6 @@ public class GetSerWorks {
             Map<String, String> mapWork = (TreeMap<String, String>)workStream.readObject();
          workStream.close();
                 allInfo = key + " \n" + mapWork.get(key);
-               // System.out.println(mapWork.get(key));
             return allInfo;
 
         } catch (IOException e) {

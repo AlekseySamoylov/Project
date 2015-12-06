@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="fxexample1" default="all">
+  
+  
+  <property file="carServise.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module FXExample1 -->
+  
+  <dirname property="module.fxexample1.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.fxexample1" value="-encoding UTF-8 -source 1.6 -target 1.6 ${compiler.args}"/>
+  
+  <property name="fxexample1.output.dir" value="${module.fxexample1.basedir}/out/production/FXExample1"/>
+  <property name="fxexample1.testoutput.dir" value="${module.fxexample1.basedir}/out/test/FXExample1"/>
+  
+  <path id="fxexample1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="fxexample1.module.production.classpath"/>
+  
+  <path id="fxexample1.runtime.production.module.classpath">
+    <pathelement location="${fxexample1.output.dir}"/>
+  </path>
+  
+  <path id="fxexample1.module.classpath">
+    <pathelement location="${fxexample1.output.dir}"/>
+  </path>
+  
+  <path id="fxexample1.runtime.module.classpath">
+    <pathelement location="${fxexample1.testoutput.dir}"/>
+    <pathelement location="${fxexample1.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.fxexample1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.fxexample1">
+    <patternset refid="excluded.from.module.fxexample1"/>
+  </patternset>
+  
+  <path id="fxexample1.module.sourcepath">
+    <dirset dir="${module.fxexample1.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.fxexample1" depends="compile.module.fxexample1.production,compile.module.fxexample1.tests" description="Compile module FXExample1"/>
+  
+  <target name="compile.module.fxexample1.production" description="Compile module FXExample1; production classes">
+    <mkdir dir="${fxexample1.output.dir}"/>
+    <javac destdir="${fxexample1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.fxexample1}"/>
+      <bootclasspath refid="fxexample1.module.bootclasspath"/>
+      <classpath refid="fxexample1.module.production.classpath"/>
+      <src refid="fxexample1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.fxexample1"/>
+    </javac>
+    
+    <copy todir="${fxexample1.output.dir}">
+      <fileset dir="${module.fxexample1.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.fxexample1.tests" depends="compile.module.fxexample1.production" description="compile module FXExample1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.fxexample1" description="cleanup module">
+    <delete dir="${fxexample1.output.dir}"/>
+    <delete dir="${fxexample1.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.fxexample1, clean.artifact.carservise1" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.fxexample1" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.carservise1" value="${basedir}/out/artifacts/CarServise1"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.JavaFXApp.jar" value="${artifacts.temp.dir}/JavaFXApp.jar"/>
+  </target>
+  
+  <target name="clean.artifact.carservise1" description="clean CarServise1 artifact output">
+    <delete dir="${artifact.output.carservise1}"/>
+  </target>
+  
+  <target name="artifact.carservise1" depends="init.artifacts, compile.module.fxexample1" description="Build &#39;CarServise1&#39; artifact">
+    <mkdir dir="${artifact.output.carservise1}"/>
+    <jar destfile="${temp.jar.path.JavaFXApp.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${fxexample1.output.dir}"/>
+    </jar>
+    <copy file="${temp.jar.path.JavaFXApp.jar}" tofile="${artifact.output.carservise1}/JavaFXApp.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.carservise1" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

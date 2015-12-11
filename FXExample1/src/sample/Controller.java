@@ -5,20 +5,24 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 import javax.mail.MessagingException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 public class Controller {
+    Configuration configuration = new Configuration();
 
     ObservableList<String> list
             = FXCollections.observableArrayList("Стрелков Александр","Жигулев Александр","Закоптелов Антон","Вашкарин Евгений","Осипов Евгений","Плотников Евгений", "Автослесарь", "Автослесарь с золотыми руками");
@@ -65,6 +69,23 @@ public class Controller {
     private ProgressBar progressSend;
 
     @FXML
+    private void onClickConfig(ActionEvent event) throws IOException, ClassNotFoundException {
+        if (!new File("conf.ser").exists()) {
+            newObject();
+        }
+        label.setText("Нажмите кнопку Обновить после изменения конфигурации!");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("config.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void PrintCheck(ActionEvent event){
         String checkText = printArea.getText();
         Printer five = new Printer();
@@ -89,7 +110,7 @@ public class Controller {
     }
 
     @FXML
-    private void refreshData(ActionEvent event){
+    private void refreshData(ActionEvent event) throws IOException, ClassNotFoundException {
         setAllEvents();
     new Thread(new Runnable() {
         @Override
@@ -104,7 +125,7 @@ public class Controller {
 
     //Сохранение данных о клиенте и работе
     @FXML
-    private void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException {
+    private void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {
 
                 Date sec = new Date();
                 SimpleDateFormat date = new SimpleDateFormat("kk:mm dd/M/yyyy");
@@ -136,7 +157,6 @@ public class Controller {
                                     return null;
                                 }
                             };
-
                             progressSend.progressProperty().bind(task.progressProperty());
                             final Thread progress = new Thread(task);
                             progress.start();
@@ -168,36 +188,15 @@ public class Controller {
                         label.setText("Ошибка в поле \"Цена\"");
                     }
                 }
-
-    }
-    //Установка всех данных в поля и таблицу
-    private void setAllEvents(){
-        try{
-            GetSerWorks two = new GetSerWorks();
-            ObservableList listAll = two.getSerWorks();
-            Collections.reverse(listAll);
-            cashList.setItems(listAll);
-            label.setText("ok!");
-        }catch(Exception ex){
-            System.out.println(ex);
-            label.setText("Wrong print table!");
-        }
-        comboBox.setItems(list);
-        comboBox1.setItems(listMeneger);
     }
 
     //Просмотр информации из ячейки
     @FXML
     private void clickPrint() throws ClassNotFoundException {
-
         String printText = cashList.getSelectionModel().getSelectedItems().toString();
-
-        System.out.println(printText);
         int longStr = printText.length();
         String keyFinal = printText.substring(1, (longStr-1));
-        System.out.println(keyFinal);
         GetSerWorks three = new GetSerWorks();
-
         printArea.setText(three.getAllInfo(keyFinal));
     }
 
@@ -215,17 +214,62 @@ public class Controller {
             label.setText("Wrong print table!");
         }
     }
-    //Очистить поля ввода данных о клиенте
-//    @FXML
-//    private void clickClearAction(ActionEvent event){
-//        client.setText("");
-//                tel.setText("");
-//                car.setText("");
-//                works.setText("");
-//                price.setText("");
-//                other.setText("");
-//        comboBox.getSelectionModel().select("Выбери!");
-//    }
 
+    //Установка всех данных в поля и таблицу
+    private void setAllEvents() throws ClassNotFoundException, IOException {
+            GetSerWorks two = new GetSerWorks();
+            ObservableList listAll = two.getSerWorks();
+            Collections.reverse(listAll);
+            cashList.setItems(listAll);
+            label.setText("ok!");
+        configuration.clearArrays();
+        if (!new File("conf.ser").exists()) {
+            newObject();
+        }
+        configuration = readObj();
+        comboBox.setItems(FXCollections.observableArrayList(configuration.getManagers()));
+        comboBox1.setItems(FXCollections.observableArrayList(configuration.getMasters()));
+    }
+
+
+    private Configuration readObj() throws IOException {
+        ObjectInputStream inputConf = new ObjectInputStream(new FileInputStream("conf.ser"));
+        try{
+            return configuration = (Configuration)inputConf.readObject();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            inputConf.close();
+        }
+        return null;
+    }
+
+    private void newObject() throws IOException {
+        ObjectOutputStream outputCon = new ObjectOutputStream(new FileOutputStream("conf.ser"));
+        try{
+            configuration.setId("repaircarcenter1@gmail.com");
+            configuration.setPassword("***");
+            configuration.setCheck("********************************************************************************\n"
+                    + "Исполнитель\n"
+                    + "Подпись__________________________         М.П.       \n"
+                    + "\n"
+                    + "Заказчик\n"
+                    + "Подпись__________________________\n\n"
+                    +"********************************************************************************");
+            configuration.setManagers("Новиков Олег");
+            configuration.setManagers("Мезенцев Артур");
+            configuration.setMasters("Стрелков Александр");
+            configuration.setMasters("Жигулев Александр");
+            configuration.setMasters("Закоптелов Антон");
+            configuration.setMasters("Вашкарин Евгений");
+            configuration.setMasters("Осипов Евгений");
+            configuration.setMasters("Плотников Евгений");
+            outputCon.writeObject(configuration);
+            outputCon.close();
+        }finally {
+            outputCon.close();
+        }
+    }
 
 }

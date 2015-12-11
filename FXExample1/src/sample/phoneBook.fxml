@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="465.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.phoneBookController">
+   <children>
+      <ListView fx:id="phoneList" layoutX="8.0" layoutY="90.0" prefHeight="364.0" prefWidth="625.0" />
+      <Button layoutX="321.0" layoutY="14.0" mnemonicParsing="false" text="Добавить" />
+      <TextField fx:id="addPhone" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="293.0" />
+      <TextField fx:id="searchPhone" layoutX="14.0" layoutY="54.0" prefHeight="27.0" prefWidth="293.0" />
+      <Button layoutX="321.0" layoutY="54.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="79.0" text="Поиск" />
+      <Label layoutX="474.0" layoutY="19.0" text="Console" textFill="RED" />
+      <Button layoutX="548.0" layoutY="54.0" mnemonicParsing="false" text="Удалить" />
+   </children>
+</AnchorPane>

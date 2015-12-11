@@ -19,6 +19,7 @@
     <root id="root">
       <element id="archive" name="JavaFXApp.jar">
         <element id="module-output" name="FXExample1" />
+        <element id="file-copy" path="$PROJECT_DIR$/../javax.mail.jar" />
       </element>
     </root>
   </artifact>

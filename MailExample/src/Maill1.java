@@ -8,7 +8,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Main {
+public class Maill1 {
     static Properties mailServerProperties;
     static Session getMailSession;
     static MimeMessage generateMailMessage;

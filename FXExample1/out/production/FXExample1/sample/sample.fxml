@@ -13,7 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="665.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <Button fx:id="button" layoutX="422.0" layoutY="394.0" onAction="#handleButtonAction" text="Готово!" />
-        <Label fx:id="label" layoutX="622.0" layoutY="22.0" minHeight="16.0" minWidth="69.0" prefHeight="22.0" prefWidth="368.0" text="Для начала работы нажмите кнопку &quot;Обновить&quot;" textFill="RED">
+        <Label fx:id="label" layoutX="558.0" layoutY="6.0" minHeight="16.0" minWidth="69.0" prefHeight="22.0" prefWidth="368.0" text="Для начала работы нажмите кнопку &quot;Обновить&quot;" textFill="RED">
             <font>
                 <Font size="12.0" />
             </font>
@@ -60,5 +60,7 @@
       <Button layoutX="1042.0" layoutY="393.0" mnemonicParsing="false" onAction="#refreshData" text="Обновить" />
       <Button layoutX="940.0" layoutY="393.0" mnemonicParsing="false" onAction="#PrintCheck" text="Печать" />
       <ProgressBar fx:id="progressSend" layoutX="38.0" layoutY="397.0" prefHeight="20.0" prefWidth="359.0" progress="0.0" />
+      <Button layoutX="1048.0" layoutY="3.0" mnemonicParsing="false" onAction="#onClickConfig" text="Настройки" />
+      <Button layoutX="959.0" layoutY="32.0" mnemonicParsing="false" text="Телефонный справочник" />
     </children>
 </AnchorPane>

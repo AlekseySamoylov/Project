@@ -12,10 +12,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ConfigController">
    <children>
+      <Button layoutX="229.0" layoutY="88.0" mnemonicParsing="false" onAction="#passEdit" text="Ok_P" />
+      <PasswordField fx:id="login" layoutX="14.0" layoutY="22.0" promptText="Не пиши" />
       <TextField fx:id="id" layoutX="14.0" layoutY="56.0" prefHeight="27.0" prefWidth="207.0" promptText="Не пиши!" />
       <TextField fx:id="pass" layoutX="14.0" layoutY="88.0" prefHeight="27.0" prefWidth="207.0" promptText="Не пиши!" />
-      <Button layoutX="228.0" layoutY="88.0" mnemonicParsing="false" onAction="#mailEdit" text="Ok" />
-      <PasswordField fx:id="login" layoutX="14.0" layoutY="22.0" promptText="Не пиши" />
       <Label fx:id="label" layoutX="237.0" layoutY="6.0" prefHeight="17.0" prefWidth="200.0" text="Редактор настроек" textFill="RED" />
       <TextField fx:id="manager" layoutX="344.0" layoutY="29.0" prefHeight="27.0" prefWidth="167.0" promptText="Менеджера" />
       <TextField fx:id="master" layoutX="344.0" layoutY="69.0" prefHeight="27.0" prefWidth="167.0" promptText="Автослесаря" />
@@ -25,5 +25,6 @@
       <Button layoutX="428.0" layoutY="108.0" mnemonicParsing="false" onAction="#editCheck" text="Изменить текст квитанции" />
       <Button layoutX="323.0" layoutY="108.0" mnemonicParsing="false" onAction="#refresh" text="Обновить" />
       <Button layoutX="470.0" layoutY="448.0" mnemonicParsing="false" onAction="#clickRecovery" text="Сброс всех настроек" />
+      <Button layoutX="229.0" layoutY="56.0" mnemonicParsing="false" onAction="#loginEdit" text="Ok_L" />
    </children>
 </AnchorPane>

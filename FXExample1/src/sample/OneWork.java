@@ -39,9 +39,9 @@ if(new File("works.ser").exists()) {
         }new Thread(new Runnable() {
             @Override
             public void run() {
-                MailSend newmail = new MailSend();
+                MailSendFile newmail = new MailSendFile();
                 try {
-                    newmail.generateAndSendEmail(three, two);
+                    newmail.sendMess(three, two);
                 }catch (Exception ex){
                     System.out.println("Mail Ex" + ex.hashCode());
                 }

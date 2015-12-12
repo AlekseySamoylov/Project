@@ -1,56 +1,179 @@
 package sample;
 
+
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Properties;
 
-/**
- * Created by AlekseiSamoilov on 10/12/15.
- */
 public class MailSendFile {
-    static Properties mailServerProperties;
-    static Session getMailSession;
-    static MimeMessage generateMailMessage;
+    static final String ENCODING = "UTF-8";
 
+    public void sendMess() throws MessagingException, UnsupportedEncodingException {
+        String subject = "Автосервис КАМЕНКА";
+        String content = "База";
+        String smtpHost="smtp.rambler.ru";
+        String addressFrom="alcoslesar@rambler.ru";
+        String addressTo=StaticValues.id;
+        String login="alcoslesar";
+        String password=StaticValues.password;
+        System.out.println(StaticValues.id + StaticValues.password);
+        String smtpPort="25";
 
-    MailSendFile() throws AddressException, MessagingException {
+        String attachment = "works.ser";
+        sendMultiMessage(login, password, addressFrom, addressTo, content, subject, attachment, smtpPort, smtpHost);
+    }
 
-        String filename = "works.ser";
+    public void sendMess(String subject, String content) throws MessagingException, UnsupportedEncodingException {
 
+        String smtpHost="smtp.rambler.ru";
+        String addressFrom="alcoslesar@rambler.ru";
+        String addressTo=StaticValues.id;
+        String login="alcoslesar";
+        String password=StaticValues.password;
+        String smtpPort="25";
 
-        mailServerProperties = System.getProperties();
-        mailServerProperties.put("mail.smtp.port", "587");
-        mailServerProperties.put("mail.smtp.auth", "true");
-        mailServerProperties.put("mail.smtp.starttls.enable", "true");
+        String attachment = "works.ser";
+        sendSimpleMessage(login, password, addressFrom, addressTo, content, subject, smtpPort, smtpHost);
+    }
 
+    public static void sendSimpleMessage(String login, String password, String from, String to, String content, String subject, String smtpPort, String smtpHost) throws MessagingException, UnsupportedEncodingException {
+        Properties props = System.getProperties();
+        props.put("mail.smtp.port", smtpPort);
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.mime.charset", ENCODING);
 
-        getMailSession = Session.getDefaultInstance(mailServerProperties, null);
-        generateMailMessage = new MimeMessage(getMailSession);
-        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("alekseysamoylov89@gmail.com"));
-        generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("repaircarcenter1@gmail.com"));
-        generateMailMessage.setSubject("База данных сервиса");
+        Authenticator auth = new MyAuthenticator(login, password);
+        Session session = Session.getDefaultInstance(props, auth);
 
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(from));
+        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        msg.setRecipient(Message.RecipientType.CC, new InternetAddress("repaircarcenter@gmail.com"));
+        msg.setSubject(subject);
+        msg.setText(content);
+        Transport.send(msg);
+    }
 
-        BodyPart messageAttach = new MimeBodyPart();
+    public static void sendMultiMessage(String login, String password, String from, String to, String content, String subject, String attachment, String smtpPort, String smtpHost) throws MessagingException, UnsupportedEncodingException {
+        Properties props = System.getProperties();
+        props.put("mail.smtp.port", smtpPort);
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.mime.charset", ENCODING);
+
+        Authenticator auth = new MyAuthenticator(login, password);
+        Session session = Session.getDefaultInstance(props, auth);
+
+        MimeMessage msg = new MimeMessage(session);
+
+        msg.setFrom(new InternetAddress(from));
+        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        msg.setRecipient(Message.RecipientType.CC, new InternetAddress("repaircarcenter@gmail.com"));
+        msg.setSubject(subject, ENCODING);
+
+        BodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setContent(content, "text/plain; charset=" + ENCODING + "");
         Multipart multipart = new MimeMultipart();
-        multipart.addBodyPart(messageAttach);
+        multipart.addBodyPart(messageBodyPart);
 
-        DataSource data = new FileDataSource(filename);
-        messageAttach.setDataHandler(new DataHandler(data));
+        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+        DataSource source = new FileDataSource(attachment);
+        attachmentBodyPart.setDataHandler(new DataHandler(source));
+        attachmentBodyPart.setFileName(MimeUtility.encodeText(source.getName()));
+        multipart.addBodyPart(attachmentBodyPart);
 
-        messageAttach.setFileName(filename);
+        msg.setContent(multipart);
 
-        multipart.addBodyPart(messageAttach);
-
-        generateMailMessage.setContent(multipart);
-
-        Transport transport = getMailSession.getTransport("smtp");
-
-        transport.connect("smtp.gmail.com", StaticValues.id, StaticValues.password);
-        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-        transport.close();
+        Transport.send(msg);
     }
 }
+
+class MyAuthenticator extends Authenticator {
+    private String user;
+    private String password;
+
+    MyAuthenticator(String user, String password) {
+        this.user = user;
+        this.password = password;
+    }
+
+    public PasswordAuthentication getPasswordAuthentication() {
+        String user = this.user;
+        String password = this.password;
+        return new PasswordAuthentication(user, password);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import javax.activation.DataHandler;
+//import javax.activation.DataSource;
+//import javax.activation.FileDataSource;
+//import javax.mail.*;
+//import javax.mail.internet.*;
+//import java.util.Properties;
+//
+///**
+// * Created by AlekseiSamoilov on 10/12/15.
+// */
+//public class MailSendFile {
+//    static Properties mailServerProperties;
+//    static Session getMailSession;
+//    static MimeMessage generateMailMessage;
+//
+//
+//    MailSendFile() throws AddressException, MessagingException {
+//
+//        String filename = "works.ser";
+//
+//
+//        mailServerProperties = System.getProperties();
+//        mailServerProperties.put("mail.smtp.port", "587");
+//        mailServerProperties.put("mail.smtp.auth", "true");
+//        mailServerProperties.put("mail.smtp.starttls.enable", "true");
+//
+//
+//        getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+//        generateMailMessage = new MimeMessage(getMailSession);
+//        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("alekseysamoylov89@gmail.com"));
+//        generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("repaircarcenter1@gmail.com"));
+//        generateMailMessage.setSubject("База данных сервиса");
+//
+//
+//        BodyPart messageAttach = new MimeBodyPart();
+//        Multipart multipart = new MimeMultipart();
+//        multipart.addBodyPart(messageAttach);
+//
+//        DataSource data = new FileDataSource(filename);
+//        messageAttach.setDataHandler(new DataHandler(data));
+//
+//        messageAttach.setFileName(filename);
+//
+//        multipart.addBodyPart(messageAttach);
+//
+//        generateMailMessage.setContent(multipart);
+//
+//        Transport transport = getMailSession.getTransport("smtp");
+//        System.out.println(StaticValues.id + StaticValues.password);
+//        transport.connect("smtp.gmail.com", StaticValues.id, StaticValues.password);
+//        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+//        transport.close();
+//    }
+//}

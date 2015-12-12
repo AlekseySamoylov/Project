@@ -72,21 +72,38 @@ public class ConfigController {
     }
 
     @FXML
-    private void mailEdit(ActionEvent event) throws IOException {
-        if(login.getText().equals("Aleks")){
+    private void loginEdit(ActionEvent event) throws IOException {
+        if(login.getText().equals("890280a")){
 
                 configuration = readObj();
                 configuration.setId(id.getText());
-                configuration.setPassword(pass.getText());
                 writeConf(configuration);
-                label.setText("mEdit Successful!");
+                label.setText("lEdit Successful!");
         }else{
             id.setText("Куда лезешь?");
             pass.setText("Проваливай отсюда!");
         }
+        login.setText("");
+
+    }
+
+    @FXML
+    private void passEdit(ActionEvent event) throws IOException {
+        if(login.getText().equals("890280a")){
+
+            configuration = readObj();
+            configuration.setPassword(pass.getText());
+            writeConf(configuration);
+            label.setText("pEdit Successful!");
+        }else{
+            id.setText("Куда лезешь?");
+            pass.setText("Проваливай отсюда!");
+        }
+        login.setText("");
 
 
     }
+
     @FXML
     private void setManager() throws IOException, ClassNotFoundException {
 

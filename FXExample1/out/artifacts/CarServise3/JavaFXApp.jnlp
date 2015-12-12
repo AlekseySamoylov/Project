@@ -8,8 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApp.jar" size="27743" download="eager" />
-    <jar href="javax.mail.jar" size="617239" download="eager" />
+    <jar href="JavaFXApp.jar" size="29763" download="eager" />
+    <jar href="javax.mail.jar" size="617241" download="eager" />
   </resources>
 <security>
   <all-permissions/>

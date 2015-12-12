@@ -116,8 +116,11 @@ public class Controller {
         @Override
         public void run() {
             try {
-                new MailSendFile();
+                MailSendFile mailN = new MailSendFile();
+                mailN.sendMess();
             } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
@@ -139,7 +142,7 @@ public class Controller {
                 String worksB = works.getText();
                 float priceB = 0;
 
-                if((masterB == null || comboBox1.getSelectionModel().getSelectedItem() == null)||(masterB.equals("Выбери!"))){
+                if((masterB == null || comboBox1.getSelectionModel().getSelectedItem() == null)||(masterB.equals("Выбери!"))||managerB.equals("Выбери!")){
                     label.setText("Не выбрано поле с именем Мастера или Менеджера");
                 }else{
                     try{
@@ -227,8 +230,10 @@ public class Controller {
             newObject();
         }
         configuration = readObj();
-        comboBox.setItems(FXCollections.observableArrayList(configuration.getManagers()));
-        comboBox1.setItems(FXCollections.observableArrayList(configuration.getMasters()));
+        StaticValues.id = configuration.getId();
+        StaticValues.password = configuration.getPassword();
+        comboBox1.setItems(FXCollections.observableArrayList(configuration.getManagers()));
+        comboBox.setItems(FXCollections.observableArrayList(configuration.getMasters()));
     }
 
 
@@ -248,7 +253,7 @@ public class Controller {
     private void newObject() throws IOException {
         ObjectOutputStream outputCon = new ObjectOutputStream(new FileOutputStream("conf.ser"));
         try{
-            configuration.setId("repaircarcenter1@gmail.com");
+            configuration.setId("alekseysamoylov89@gmail.com");
             configuration.setPassword("***");
             configuration.setCheck("********************************************************************************\n"
                     + "Исполнитель\n"

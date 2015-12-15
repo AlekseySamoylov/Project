@@ -63,7 +63,7 @@ public class ConfigController {
        }
 
     @FXML
-    private void refresh() throws IOException, ClassNotFoundException {
+    public void refresh() throws IOException, ClassNotFoundException {
 
 
             configuration = readObj();

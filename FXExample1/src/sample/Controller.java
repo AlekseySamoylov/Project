@@ -69,24 +69,21 @@ public class Controller {
     private ProgressBar progressSend;
 
     @FXML
-    private void onClickConfig(ActionEvent event) throws IOException, ClassNotFoundException {
+    private void clickPhone() throws IOException {
+        newScene("phoneBook.fxml");
+    }
+
+    @FXML
+    private void onClickConfig() throws IOException, ClassNotFoundException {
         if (!new File("conf.ser").exists()) {
             newObject();
         }
         label.setText("Нажмите кнопку Обновить после изменения конфигурации!");
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("config.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+       newScene("config.fxml");
     }
 
     @FXML
-    private void PrintCheck(ActionEvent event){
+    private void PrintCheck(){
         String checkText = printArea.getText();
         Printer five = new Printer();
         five.printer(checkText);
@@ -105,12 +102,12 @@ public class Controller {
     }
 
     @FXML
-    private void searchAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    private void searchAction() throws SQLException, ClassNotFoundException {
         searchIn();
     }
 
     @FXML
-    private void refreshData(ActionEvent event) throws IOException, ClassNotFoundException {
+    private void refreshData() throws IOException, ClassNotFoundException {
         setAllEvents();
     new Thread(new Runnable() {
         @Override
@@ -128,7 +125,7 @@ public class Controller {
 
     //Сохранение данных о клиенте и работе
     @FXML
-    private void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {
+    private void handleButtonAction() throws ClassNotFoundException, SQLException, IOException {
 
                 Date sec = new Date();
                 SimpleDateFormat date = new SimpleDateFormat("kk:mm dd/M/yyyy");
@@ -152,7 +149,7 @@ public class Controller {
                         try {
                             Task task = new Task<Void>() {
                                 @Override public Void call() {
-                                    final int max = 20000000;
+                                    final int max = 15000000;
                                     for (int i = 1; i <= max; i++) {
                                         updateProgress(i, max);
                                     }
@@ -254,7 +251,7 @@ public class Controller {
         ObjectOutputStream outputCon = new ObjectOutputStream(new FileOutputStream("conf.ser"));
         try{
             configuration.setId("alekseysamoylov89@gmail.com");
-            configuration.setPassword("***");
+            configuration.setPassword("890280a");
             configuration.setCheck("********************************************************************************\n"
                     + "Исполнитель\n"
                     + "Подпись__________________________         М.П.       \n"
@@ -275,6 +272,13 @@ public class Controller {
         }finally {
             outputCon.close();
         }
+    }
+    private void newScene(String fileFXML) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fileFXML));
+        Parent root = (Parent)fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

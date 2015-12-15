@@ -3,17 +3,17 @@
   <information>
     <title>ok</title>
     <vendor>Unknown</vendor>
-    <description>CarServise3</description>
+    <description>DirectorApplication</description>
     <offline-allowed/>
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApp.jar" size="29180" download="eager" />
-    <jar href="javax.mail.jar" size="617237" download="eager" />
+    <jar href="JavaFXApp.jar" size="9587" download="eager" />
+    <jar href="javax.mail.jar" size="582024" download="eager" />
   </resources>
 <security>
   <all-permissions/>
 </security>
-  <jfx:javafx-desc  width="1200" height="700" main-class="sample.Main"  name="CarServise3" />
+  <jfx:javafx-desc  width="800" height="680" main-class="sample.Main"  name="DirectorApplication" />
   <update check="always"/>
 </jnlp>

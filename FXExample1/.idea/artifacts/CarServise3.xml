@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" build-on-make="true" name="CarServise3">
+  <artifact type="javafx" name="CarServise3">
     <output-path>$PROJECT_DIR$/out/artifacts/CarServise3</output-path>
     <properties id="javafx-properties">
       <options>
@@ -19,7 +19,6 @@
     <root id="root">
       <element id="archive" name="JavaFXApp.jar">
         <element id="module-output" name="FXExample1" />
-        <element id="file-copy" path="$PROJECT_DIR$/../javax.mail.jar" />
       </element>
     </root>
   </artifact>

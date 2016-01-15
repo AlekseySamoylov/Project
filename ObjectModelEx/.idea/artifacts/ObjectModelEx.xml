@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="ObjectModelEx">
+    <output-path>$PROJECT_DIR$/out/artifacts/ObjectModelEx</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="enabledSigning" value="true" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="ObjectModelEx.jar">
+        <element id="module-output" name="ObjectModelEx" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../javax.mail.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../ojdbc6.jar" />
+    </root>
+  </artifact>
+</component>

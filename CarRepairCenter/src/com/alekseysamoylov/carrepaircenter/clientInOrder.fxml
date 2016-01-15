@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="532.0" prefWidth="802.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alekseysamoylov.carrepaircenter.ClientInOrderController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+       <AnchorPane prefHeight="532.0" prefWidth="802.0">
+              <Label fx:id="label" layoutX="346.0" layoutY="14.0" text="Список клиентов" />
+              <Button layoutX="211.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickOnButton" text="Добавить клиента" />
+              <TableView fx:id="tableView" layoutX="14.0" layoutY="87.0" prefHeight="431.0" prefWidth="774.0">
+                  <columns>
+                      <TableColumn fx:id="clientId" prefWidth="50.0" text="ID" />
+                      <TableColumn fx:id="firstName" editable="false" prefWidth="216.0" sortable="false" text="Имя" />
+                      <TableColumn fx:id="secondName" editable="false" prefWidth="282.0" sortable="false" text="Фамилия" />
+                      <TableColumn fx:id="phone" prefWidth="225.0" text="Телефон" />
+                  </columns>
+              </TableView>
+              <Button layoutX="362.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickDelete" text="Удалить клиента" />
+              <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickUpdate" text="Изменить данные клиента" />
+              <TextField fx:id="filterField" layoutX="501.0" layoutY="45.0" prefHeight="27.0" prefWidth="170.0" promptText="Поиск Клиента" />
+              <Button layoutX="684.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickClientCars" prefHeight="27.0" prefWidth="104.0" text="Далее" />
+            <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#clickOnBack" text="Назад" />
+       </AnchorPane>
+
+</GridPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="CarRepairCenter.jnlp">
+  <information>
+    <title>Servise</title>
+    <vendor>Unknown</vendor>
+    <description>CarRepairCenter</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="CarRepairCenter.jar" size="81135" download="eager" />
+    <jar href="javax.mail.jar" size="617238" download="eager" />
+    <jar href="ojdbc7.jar" size="3867610" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="600" height="400" main-class="com.alekseysamoylov.carrepaircenter.Main"  name="CarRepairCenter" />
+  <update check="background"/>
+</jnlp>

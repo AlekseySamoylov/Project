@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="805.0" prefWidth="1181.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alekseysamoylov.carrepaircenter.MainStageController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+   <children>
+       <AnchorPane prefHeight="808.0" prefWidth="1181.0">
+          <children>
+            <ComboBox fx:id="managerBox" layoutX="12.0" layoutY="108.0" onAction="#clickManagerBox" prefHeight="27.0" prefWidth="171.0" promptText="Менеджер" />
+              <Label fx:id="label" layoutX="544.0" layoutY="42.0" text="Главное меню" />
+              <TableView fx:id="tableView" disable="true" layoutX="12.0" layoutY="146.0" prefHeight="645.0" prefWidth="1156.0">
+                  <columns>
+                      <TableColumn fx:id="orderId" editable="false" prefWidth="53.0" sortable="false" text="№" />
+                  <TableColumn fx:id="orderDate" editable="false" prefWidth="99.0" sortable="false" text="Дата" />
+                      <TableColumn fx:id="client" editable="false" prefWidth="452.0" sortable="false" text="Заказчик и автомобиль" />
+                  <TableColumn fx:id="manager" editable="false" prefWidth="181.0" sortable="false" text="Менеджер" />
+                  <TableColumn fx:id="orderName" editable="false" prefWidth="164.0" sortable="false" text="Вид операции" />
+                  <TableColumn fx:id="summ" editable="false" prefWidth="107.0" sortable="false" text="Сумма" />
+                  <TableColumn fx:id="purchase" editable="false" prefWidth="99.0" sortable="false" text="Оплачено" />
+                  </columns>
+              </TableView>
+              <Button fx:id="deleteButton" disable="true" layoutX="601.0" layoutY="108.0" mnemonicParsing="false" onAction="#clickDelete" text="Удалить" />
+              <TextField fx:id="filterField" layoutX="694.0" layoutY="108.0" prefHeight="27.0" prefWidth="205.0" promptText="Поиск" />
+            <Button fx:id="addButton" disable="true" layoutX="211.0" layoutY="108.0" mnemonicParsing="false" onAction="#clickAdd" prefHeight="27.0" prefWidth="171.0" text="Добавить заказ-наряд" />
+            <Button fx:id="updateButton" disable="true" layoutX="392.0" layoutY="108.0" mnemonicParsing="false" onAction="#clickUpdate" prefHeight="27.0" prefWidth="198.0" text="Редактировать заказ-наряд" />
+            <TextField fx:id="moneyPut" layoutX="1057.0" layoutY="108.0" prefHeight="27.0" prefWidth="84.0" />
+            <Button fx:id="payButton" disable="true" layoutX="986.0" layoutY="108.0" mnemonicParsing="false" onAction="#addMoney" text="Оплата" />
+            <Button fx:id="printButton" disable="true" layoutX="912.0" layoutY="108.0" mnemonicParsing="false" onAction="#printOrder" text="Печать" />
+            <Label layoutX="1141.0" layoutY="113.0" text="Руб." />
+            <Button layoutX="1094.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickClients" text="Клиенты" />
+            <Button layoutX="987.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickCars" text="Автомобили" />
+            <Button layoutX="832.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickWorks" text="Работы / Запчасти" />
+            <Button layoutX="775.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickSQL" text="SQL" />
+          </children>
+       </AnchorPane>
+   </children>
+
+</GridPane>

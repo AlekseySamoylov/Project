@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="532.0" prefWidth="802.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alekseysamoylov.carrepaircenter.ClientInOrderController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+   <children>
+       <AnchorPane prefHeight="532.0" prefWidth="802.0">
+          <children>
+              <Label fx:id="label" layoutX="346.0" layoutY="14.0" text="Управление списком клиентов" />
+              <Button layoutX="100.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickOnButton2" text="Добавить клиента" />
+              <TableView fx:id="tableView" layoutX="14.0" layoutY="87.0" prefHeight="431.0" prefWidth="774.0">
+                  <columns>
+                      <TableColumn fx:id="clientId" prefWidth="50.0" text="ID" />
+                      <TableColumn fx:id="firstName" editable="false" prefWidth="216.0" sortable="false" text="Имя" />
+                      <TableColumn fx:id="secondName" editable="false" prefWidth="282.0" sortable="false" text="Фамилия" />
+                      <TableColumn fx:id="phone" prefWidth="225.0" text="Телефон" />
+                  </columns>
+              </TableView>
+              <Button layoutX="479.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickDelete" text="Удалить клиента" />
+              <Button layoutX="269.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickUpdate2" text="Изменить данные клиента" />
+              <TextField fx:id="filterField" layoutX="618.0" layoutY="45.0" prefHeight="27.0" prefWidth="170.0" promptText="Поиск Клиента" />
+              <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#clickOnBackMain" text="Назад" />
+          </children>
+       </AnchorPane>
+   </children>
+
+</GridPane>

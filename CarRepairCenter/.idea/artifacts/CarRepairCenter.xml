@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="CarRepairCenter">
+    <output-path>$PROJECT_DIR$/out/artifacts/CarRepairCenter</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="com.alekseysamoylov.carrepaircenter.Main" />
+        <option name="convertCss2Bin" value="true" />
+        <option name="description" value="" />
+        <option name="enabledSigning" value="true" />
+        <option name="htmlParamFile" value="" />
+        <option name="nativeBundle" value="exe" />
+        <option name="paramFile" value="" />
+        <option name="title" value="Servise" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="CarRepairCenter.jar">
+        <element id="module-output" name="CarRepairCenter" />
+        <element id="library" level="project" name="ojdbc7" />
+        <element id="library" level="project" name="javax.mail" />
+      </element>
+    </root>
+  </artifact>
+</component>

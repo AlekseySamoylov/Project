@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="223.0" prefWidth="653.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alekseysamoylov.carrepaircenter.CarsController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+        <AnchorPane prefHeight="221.0" prefWidth="656.0">
+                <Label fx:id="label" layoutX="321.0" layoutY="14.0" prefHeight="17.0" prefWidth="188.0" text="Автомобили" />
+                <Button layoutX="538.0" layoutY="107.0" mnemonicParsing="false" onAction="#clickSaveCar" text="Сохранить" />
+                <TextField fx:id="markManual" layoutX="95.0" layoutY="107.0" onKeyTyped="#textClick" onMouseClicked="#textClick" prefHeight="27.0" prefWidth="197.0" promptText="Марка" />
+                <TextField fx:id="modelManual" layoutX="311.0" layoutY="107.0"  prefHeight="27.0" prefWidth="197.0" promptText="Модель" />
+                <Label layoutX="173.0" layoutY="45.0" text="Марка" />
+                <Label layoutX="386.0" layoutY="45.0" text="Модель" />
+                <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickBackToMain" text="Назад" />
+                <ComboBox fx:id="markBox" layoutX="95.0" layoutY="68.0" onAction="#selectMark" prefHeight="27.0" prefWidth="197.0" promptText="." />
+                <ComboBox fx:id="modelBox" layoutX="312.0" layoutY="68.0" prefHeight="27.0" prefWidth="197.0" promptText="." />
+        </AnchorPane>
+</GridPane>

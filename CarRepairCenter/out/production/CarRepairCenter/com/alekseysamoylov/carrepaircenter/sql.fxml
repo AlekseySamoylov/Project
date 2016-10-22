@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="472.0" prefWidth="503.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alekseysamoylov.carrepaircenter.sqlController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+   <children>
+       <AnchorPane prefHeight="479.0" prefWidth="500.0">
+          <children>
+              <Label fx:id="label" layoutX="141.0" layoutY="23.0" text="SQL. Не пиши, если не знаешь." />
+              <TextArea fx:id="printerArea" layoutX="14.0" layoutY="102.0" prefHeight="350.0" prefWidth="469.0" />
+              <Button layoutX="373.0" layoutY="18.0" mnemonicParsing="false" onAction="#run" text="Run statement" />
+              <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" />
+            <TextField fx:id="sqlStatement" layoutX="14.0" layoutY="64.0" prefHeight="27.0" prefWidth="469.0" />
+          </children>
+       </AnchorPane>
+   </children>
+</GridPane>

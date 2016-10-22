@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="663.0" prefWidth="746.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alekseysamoylov.carrepaircenter.printerController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+       <AnchorPane prefHeight="662.0" prefWidth="748.0">
+            <Label fx:id="label" layoutX="235.0" layoutY="23.0" text="Предварительный просмотр Заказ-Наряда" />
+            <TextArea fx:id="printerArea" layoutX="14.0" layoutY="53.0" prefHeight="595.0" prefWidth="718.0" />
+            <Button layoutX="668.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickPrint" text="Печать" />
+            <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickBack" text="Назад" />
+       </AnchorPane>
+</GridPane>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="223.0" prefWidth="507.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+      <AnchorPane prefHeight="224.0" prefWidth="507.0">
+            <Label fx:id="label" layoutX="212.0" layoutY="14.0" text="Авторизация" />
+            <TextField fx:id="login" layoutX="97.0" layoutY="56.0" prefHeight="27.0" prefWidth="212.0" />
+            <PasswordField fx:id="password" layoutX="97.0" layoutY="109.0" onKeyPressed="#buttonPressed" prefHeight="27.0" prefWidth="212.0" />
+            <Button layoutX="433.0" layoutY="109.0" mnemonicParsing="false" onAction="#clickOnButton" text="Ok" />
+            <Label layoutX="322.0" layoutY="61.0" text="Имя пользователя" />
+            <Label layoutX="322.0" layoutY="114.0" text="Пароль" />
+      </AnchorPane>
+</GridPane>

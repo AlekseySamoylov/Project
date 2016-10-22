@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JavaFXApp.jnlp">
+  <information>
+    <title>ok</title>
+    <vendor>Unknown</vendor>
+    <description>DirectorApplication</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="JavaFXApp.jar" size="9587" download="eager" />
+    <jar href="javax.mail.jar" size="582024" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="800" height="680" main-class="sample.Main"  name="DirectorApplication" />
+  <update check="always"/>
+</jnlp>

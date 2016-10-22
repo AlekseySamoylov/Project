@@ -10,16 +10,21 @@ import java.util.TreeMap;
  * Created by AlekseiSamoilov on 05.12.15.
  */
 public class OneWork{
+    static String two;
+    static String three;
 //Сохранение значений в файле
     public void setAll(String manager, String master, String time, String client, String tel, String car, String works, float price, String other) throws IOException, ClassNotFoundException {
         Map<String, String> mapWorks = new TreeMap<String, String>();
+        int timeLenght = time.length();
+        String shortTime = time.substring(timeLenght-11);
+        String one = time + " " + client + " " + " | " + car + " | " + master + " | " + manager;
+        two = "\n\nКлиент: " + client +"\nНомер телефона клиента: " + tel + "\nАвтомобиль: " + car + "\nРемонтные работы производил мастер: " + master + "\nАвтомобиль принял/выдал менеджер: " + manager +  "\nПеречень выполненных работ, использованных запчастей и материалов: \n" + works + "\nЦена: \n" + String.valueOf(price) + "\nПримечания: \n" + other + "\nДата: " + shortTime;
+        three = time.substring(timeLenght-16) + " " + client + " " + " | " + car + " | " + master + " | " + manager;
         //если файл существует
 if(new File("works.ser").exists()) {
     ObjectInputStream oistream = new ObjectInputStream(new FileInputStream("works.ser"));
     mapWorks = (Map<String, String>)oistream.readObject();
-    String one = time + " " + client + " " + " | " + car + " | " + master + " | " + manager;
-    String two = "\n\nКлиент: " + client + "\nАвтомобиль: " + car + "\nМастер: " + master + "\nМенеджер: " + manager + "\nНомер телефона: " +tel + "\nПроизведенные работы : \n" + works + "\nЦена: \n" + String.valueOf(price) + "\nЗамечания: \n " + other;
-    mapWorks.put(one, two);
+     mapWorks.put(one, two);
     System.out.println(mapWorks.containsValue(one));
     oistream.close();
     ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream("works.ser"));
@@ -27,12 +32,21 @@ if(new File("works.ser").exists()) {
     outStream.close();
     //если файл еще не создали
 }else{
-    String one = time + " " + client + " " + " | " + car + " | " + master + " | " + manager;
-    String two = "\n\nКлиент: " + client + "\nАвтомобиль: " + car + "\nМастер: " + master + "\nМенеджер: " + manager + "\nНомер телефона: " +tel + "\nПроизведенные работы : \n" + works + "\nЦена: \n" + String.valueOf(price) + "\nЗамечания: \n " + other;
     ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream("works.ser"));
     mapWorks.put(one, two);
     outStream.writeObject(mapWorks);
     outStream.close();
-        }
+        }new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MailSendFile newmail = new MailSendFile();
+                try {
+                    newmail.sendMess(three, two);
+                }catch (Exception ex){
+                    System.out.println("Mail Ex" + ex.hashCode());
+                }
+            }
+        }).start();
+
     }
 }

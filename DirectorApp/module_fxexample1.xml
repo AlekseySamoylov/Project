@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_fxexample1" default="compile.module.fxexample1">
+  <dirname property="module.fxexample1.basedir" file="${ant.file.module_fxexample1}"/>
+  
+  <property name="module.jdk.home.fxexample1" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.fxexample1" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.fxexample1" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.fxexample1" value="-encoding UTF-8 -source 1.6 -target 1.6 ${compiler.args}"/>
+  
+  <property name="fxexample1.output.dir" value="${module.fxexample1.basedir}/out/production/FXExample1"/>
+  <property name="fxexample1.testoutput.dir" value="${module.fxexample1.basedir}/out/test/FXExample1"/>
+  
+  <path id="fxexample1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="fxexample1.module.production.classpath">
+    <path refid="${module.jdk.classpath.fxexample1}"/>
+    <pathelement location="${basedir}/../iMac/Education Java/mysql-connector-java-5.1.36/mysql-connector-java-5.1.36-bin.jar"/>
+  </path>
+  
+  <path id="fxexample1.runtime.production.module.classpath">
+    <pathelement location="${fxexample1.output.dir}"/>
+    <pathelement location="${basedir}/../iMac/Education Java/mysql-connector-java-5.1.36/mysql-connector-java-5.1.36-bin.jar"/>
+  </path>
+  
+  <path id="fxexample1.module.classpath">
+    <path refid="${module.jdk.classpath.fxexample1}"/>
+    <pathelement location="${fxexample1.output.dir}"/>
+    <pathelement location="${basedir}/../iMac/Education Java/mysql-connector-java-5.1.36/mysql-connector-java-5.1.36-bin.jar"/>
+  </path>
+  
+  <path id="fxexample1.runtime.module.classpath">
+    <pathelement location="${fxexample1.testoutput.dir}"/>
+    <pathelement location="${fxexample1.output.dir}"/>
+    <pathelement location="${basedir}/../iMac/Education Java/mysql-connector-java-5.1.36/mysql-connector-java-5.1.36-bin.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.fxexample1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.fxexample1">
+    <patternset refid="excluded.from.module.fxexample1"/>
+  </patternset>
+  
+  <path id="fxexample1.module.sourcepath">
+    <dirset dir="${module.fxexample1.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.fxexample1" depends="compile.module.fxexample1.production,compile.module.fxexample1.tests" description="Compile module FXExample1"/>
+  
+  <target name="compile.module.fxexample1.production" depends="register.custom.compilers" description="Compile module FXExample1; production classes">
+    <mkdir dir="${fxexample1.output.dir}"/>
+    <javac2 destdir="${fxexample1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.fxexample1}/javac">
+      <compilerarg line="${compiler.args.fxexample1}"/>
+      <bootclasspath refid="fxexample1.module.bootclasspath"/>
+      <classpath refid="fxexample1.module.production.classpath"/>
+      <src refid="fxexample1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.fxexample1"/>
+    </javac2>
+    
+    <copy todir="${fxexample1.output.dir}">
+      <fileset dir="${module.fxexample1.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.fxexample1.tests" depends="register.custom.compilers,compile.module.fxexample1.production" description="compile module FXExample1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.fxexample1" description="cleanup module">
+    <delete dir="${fxexample1.output.dir}"/>
+    <delete dir="${fxexample1.testoutput.dir}"/>
+  </target>
+</project>

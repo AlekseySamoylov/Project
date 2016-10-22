@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="DirectorApplication">
+    <output-path>$PROJECT_DIR$/out/artifacts/DirectorApplication</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="convertCss2Bin" value="true" />
+        <option name="description" value="" />
+        <option name="enabledSigning" value="true" />
+        <option name="height" value="680" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="ok" />
+        <option name="updateMode" value="always" />
+        <option name="vendor" value="" />
+        <option name="width" value="800" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaFXApp.jar">
+        <element id="module-output" name="DirectorApplication" />
+        <element id="file-copy" path="$PROJECT_DIR$/../javax.mail.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>

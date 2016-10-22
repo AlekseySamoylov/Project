@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+
+
+
+
+<h1 lang="en">New Delivery Service</h1>
+<h2 lang="en">Color and Beauty to Your Door</h2>
+<div class='container'>
+    <div class='circle0'></div>
+    <div class='circle1'></div>
+    <div class='circle2'></div>
+    <div class='circle3'></div>
+    <div class='circle4'></div>
+    <div class='circle5'></div>
+</div>
+<h2 lang="es">(Color y belleza a tu puerta)</h2>
+<p>We are pleased to announce that we are starting a home delivery service for
+    your flower needs. We will deliver within a 20 mile radius of the store
+    for free and $1/mile thereafter.</p>
+
+<div class='container'>
+    <div class='heart'></div>
+</div>
+
+</body>
+
+
+
+
+</html>

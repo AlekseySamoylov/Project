@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ObjectModelEx.jnlp">
+  <information>
+    <title>ObjectModelEx</title>
+    <vendor>Unknown</vendor>
+    <description>ObjectModelEx</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ObjectModelEx.jar" size="25471" download="eager" />
+    <jar href="javax.mail.jar" size="617238" download="eager" />
+    <jar href="ojdbc6.jar" size="2815440" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="ObjectModelEx" />
+  <update check="background"/>
+</jnlp>

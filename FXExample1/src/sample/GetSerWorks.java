@@ -32,7 +32,7 @@ public class GetSerWorks {
 
         return workList;
     }
-    //
+    //Показать информацию о выделенном элементе таблицы
     public String getAllInfo(String key) throws ClassNotFoundException {
         String allInfo;
         try {
@@ -40,7 +40,7 @@ public class GetSerWorks {
             ObjectInputStream workStream = new ObjectInputStream(new FileInputStream("works.ser"));
             Map<String, String> mapWork = (TreeMap<String, String>)workStream.readObject();
          workStream.close();
-                allInfo = key + " \n" + mapWork.get(key);
+                allInfo = mapWork.get(key);
             return allInfo;
 
         } catch (IOException e) {
